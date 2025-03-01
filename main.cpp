@@ -2,7 +2,7 @@
 #include <string>
 
 
-// Функция для поиска подстроки с использованием упрощённого алгоритма Рабина-Карпа
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ РїРѕРёСЃРєР° РїРѕРґСЃС‚СЂРѕРєРё СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј СѓРїСЂРѕС‰С‘РЅРЅРѕРіРѕ Р°Р»РіРѕСЂРёС‚РјР° Р Р°Р±РёРЅР°-РљР°СЂРїР°
 int find_substring_light_rabin_karp(const std::string& source, const std::string& substring) 
 {
     int n = source.length();
@@ -10,10 +10,10 @@ int find_substring_light_rabin_karp(const std::string& source, const std::string
 
     if (m > n) 
     {
-        return -1; // Подстрока длиннее строки
+        return -1; // РџРѕРґСЃС‚СЂРѕРєР° РґР»РёРЅРЅРµРµ СЃС‚СЂРѕРєРё
     }
 
-    // Упрощённая хеш-функция: сумма ASCII-кодов символов
+    // РЈРїСЂРѕС‰С‘РЅРЅР°СЏ С…РµС€-С„СѓРЅРєС†РёСЏ: СЃСѓРјРјР° ASCII-РєРѕРґРѕРІ СЃРёРјРІРѕР»РѕРІ
     auto hashFunction = [](const std::string& s) 
         {
         int hash = 0;
@@ -24,23 +24,23 @@ int find_substring_light_rabin_karp(const std::string& source, const std::string
         return hash;
         };
 
-    int substringHash = hashFunction(substring); // Хеш подстроки
+    int substringHash = hashFunction(substring); // РҐРµС€ РїРѕРґСЃС‚СЂРѕРєРё
 
     for (int i = 0; i <= n - m; i++) {
-        std::string currentSubstring = source.substr(i, m); // Текущая подстрока
-        int currentHash = hashFunction(currentSubstring); // Хеш текущей подстроки
+        std::string currentSubstring = source.substr(i, m); // РўРµРєСѓС‰Р°СЏ РїРѕРґСЃС‚СЂРѕРєР°
+        int currentHash = hashFunction(currentSubstring); // РҐРµС€ С‚РµРєСѓС‰РµР№ РїРѕРґСЃС‚СЂРѕРєРё
 
         if (currentHash == substringHash) 
         {
-            // Если хеши совпали, проверяем символы
+            // Р•СЃР»Рё С…РµС€Рё СЃРѕРІРїР°Р»Рё, РїСЂРѕРІРµСЂСЏРµРј СЃРёРјРІРѕР»С‹
             if (currentSubstring == substring) 
             {
-                return i; // Найдено совпадение
+                return i; // РќР°Р№РґРµРЅРѕ СЃРѕРІРїР°РґРµРЅРёРµ
             }
         }
     }
 
-    return -1; // Совпадение не найдено
+    return -1; // РЎРѕРІРїР°РґРµРЅРёРµ РЅРµ РЅР°Р№РґРµРЅРѕ
 }
 
 int main() 
@@ -48,39 +48,39 @@ int main()
     setlocale(LC_ALL, "rus");
 
     std::string source;
-    std::cout << "Введите строку, в которой будет осуществляться поиск: ";
-    getline(std::cin, source); // Считываем строку для поиска
+    std::cout << "Р’РІРµРґРёС‚Рµ СЃС‚СЂРѕРєСѓ, РІ РєРѕС‚РѕСЂРѕР№ Р±СѓРґРµС‚ РѕСЃСѓС‰РµСЃС‚РІР»СЏС‚СЊСЃСЏ РїРѕРёСЃРє: ";
+    getline(std::cin, source); // РЎС‡РёС‚С‹РІР°РµРј СЃС‚СЂРѕРєСѓ РґР»СЏ РїРѕРёСЃРєР°
 
     while (true) 
     {
         std::string substring;
-        std::cout << "Введите подстроку, которую нужно найти: ";
-        getline(std::cin, substring); // Считываем подстроку
+        std::cout << "Р’РІРµРґРёС‚Рµ РїРѕРґСЃС‚СЂРѕРєСѓ, РєРѕС‚РѕСЂСѓСЋ РЅСѓР¶РЅРѕ РЅР°Р№С‚Рё: ";
+        getline(std::cin, substring); // РЎС‡РёС‚С‹РІР°РµРј РїРѕРґСЃС‚СЂРѕРєСѓ
 
         if (substring == "exit")
         {
-            // Проверяем подстроку "exit" перед завершением
+            // РџСЂРѕРІРµСЂСЏРµРј РїРѕРґСЃС‚СЂРѕРєСѓ "exit" РїРµСЂРµРґ Р·Р°РІРµСЂС€РµРЅРёРµРј
             int result = find_substring_light_rabin_karp(source, substring);
             if (result != -1) 
             {
-                std::cout << "Подстрока exit найдена по индексу " << result << std::endl;
+                std::cout << "РџРѕРґСЃС‚СЂРѕРєР° exit РЅР°Р№РґРµРЅР° РїРѕ РёРЅРґРµРєСЃСѓ " << result << std::endl;
             }
             else 
             {
-                std::cout << "Подстрока exit не найдена" << std::endl;
+                std::cout << "РџРѕРґСЃС‚СЂРѕРєР° exit РЅРµ РЅР°Р№РґРµРЅР°" << std::endl;
             }
-            break; // Завершаем программу
+            break; // Р—Р°РІРµСЂС€Р°РµРј РїСЂРѕРіСЂР°РјРјСѓ
         }
 
-        // Ищем подстроку в строке
+        // РС‰РµРј РїРѕРґСЃС‚СЂРѕРєСѓ РІ СЃС‚СЂРѕРєРµ
         int result = find_substring_light_rabin_karp(source, substring);
         if (result != -1)
         {
-            std::cout << "Подстрока " << substring << " найдена по индексу " << result << std::endl;
+            std::cout << "РџРѕРґСЃС‚СЂРѕРєР° " << substring << " РЅР°Р№РґРµРЅР° РїРѕ РёРЅРґРµРєСЃСѓ " << result << std::endl;
         }
         else 
         {
-            std::cout << "Подстрока " << substring << " не найдена" << std::endl;
+            std::cout << "РџРѕРґСЃС‚СЂРѕРєР° " << substring << " РЅРµ РЅР°Р№РґРµРЅР°" << std::endl;
         }
     }
 
